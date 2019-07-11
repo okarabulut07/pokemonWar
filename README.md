@@ -1,4 +1,4 @@
 # pokemonWar
 
-#fight with some other pokemons.
+Fight with some other pokemons.
 
