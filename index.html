@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Canavar Avı</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <link rel="stylesheet" href="css/foundation.min.css">
+    <link rel="stylesheet" href="css/app.css">
+</head>
+<body>
+<div id="app">
+    <section class="row">
+        <div class="small-6 columns">
+            <h1 class="text-center">PIKACHU</h1>
+            <div class="healthbar">
+                <div :style="player_progress" class="healthbar text-center" style="background-color: green; margin: 0; color: white;">
+                	{{characterHealth}}%
+                </div>
+            </div>
+        </div>
+        <div class="small-6 columns">
+            <h1 class="text-center">{{selectedOpponent}}</h1>
+            <div class="healthbar">
+                <div :style="monster_progress" class="healthbar text-center" style="background-color: green; margin: 0; color: white;">
+                	{{monsterHealth}}%
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="row controls" v-if="!gameStarted">
+        <div class="small-12 columns">
+            <button id="start-game" @click="startGame">NEW GAME</button>
+        </div>
+    </section>
+
+    <section class="row controls" v-if="gameStarted">
+        <div class="small-12 columns">
+            <button id="attack" @click="characterAttack">ATTACK</button>
+            <button id="special-attack" @click="specialAttack">SPECIAL ATTACK</button>
+            <button id="heal" @click="firstAid">FIRST AID</button>
+            <button id="give-up" @click="giveUp">GIVE UP!</button>
+        </div>
+    </section>
+
+    <section class="row log" v-if="logs.length > 0">
+        <div class="small-12 columns">
+            <ul>
+                <li 
+                	:class="{'player-turn' : log.turn == 'p', 'monster-turn' : log.turn == 'm'}"
+                	v-for="log in logs">
+                	{{log.text}}
+                </li>
+            </ul>
+        </div>
+    </section>
+
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>
